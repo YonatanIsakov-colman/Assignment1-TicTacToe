@@ -139,9 +139,9 @@
 
         <Button
             android:id="@+id/activity_main_play_again_button"
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:visibility="gone"
+            android:visibility="invisible"
             android:textSize="18sp"
             android:layout_marginTop="16dp"
             android:text="play again"

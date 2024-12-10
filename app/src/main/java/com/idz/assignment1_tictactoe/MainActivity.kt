@@ -129,6 +129,6 @@ class MainActivity : AppCompatActivity() {
         currentPlayer = "X";
         gameActive = true;
         playerTurnText.text = "X Player Turn";
-        playAgain.visibility = Button.GONE
+        playAgain.visibility = Button.INVISIBLE
     }
 }
