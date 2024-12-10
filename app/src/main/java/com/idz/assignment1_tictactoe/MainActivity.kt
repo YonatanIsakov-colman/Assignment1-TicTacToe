@@ -17,7 +17,11 @@ class MainActivity : AppCompatActivity() {
     private lateinit var gameButtons: Array<Array<Button>>
     private val gameBoard = Array(BOARD_SIZE){
         Array(BOARD_SIZE){""}
+
     }
+    private lateinit var playAgain:Button;
+
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
@@ -51,8 +55,13 @@ class MainActivity : AppCompatActivity() {
                 }
             }
         }
-       playerTurnText = findViewById(R.id.activity_main_text_player_turn);
+
+        playerTurnText = findViewById(R.id.activity_main_text_player_turn);
         playerTurnText.text = "X Player Turn"
+
+        playAgain=findViewById(R.id.activity_main_play_again_button);
+        playAgain.setOnClickListener{
+            resetGame()};
     }
 
 
@@ -63,13 +72,13 @@ class MainActivity : AppCompatActivity() {
             gameBoard[row][col] = currentPlayer;
             if (isWin()) {
                 gameActive = false;
-                // implement text of winner player and play again button available
                 playerTurnText.text = "Player " + currentPlayer + " is the WINNER";
+                playAgain.visibility = Button.VISIBLE;
             }
             else if (isBoardFull()){
                 gameActive = false;
-                // implement text of tie and play again button available
                 playerTurnText.text = " its a TIE ";
+                playAgain.visibility = Button.VISIBLE;
             }
             else {
                 currentPlayer = if (currentPlayer == "X")
@@ -107,5 +116,19 @@ class MainActivity : AppCompatActivity() {
             }
         }
         return true;
+    }
+
+
+    private fun resetGame() {
+        for (row in 0 until BOARD_SIZE) {
+            for (col in 0 until BOARD_SIZE) {
+                gameBoard[row][col] =""
+                gameButtons[row][col].text = ""
+            }
+        }
+        currentPlayer = "X";
+        gameActive = true;
+        playerTurnText.text = "X Player Turn";
+        playAgain.visibility = Button.GONE
     }
 }
